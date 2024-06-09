@@ -6,7 +6,7 @@ ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="3.22.2"
 COPY ./reinstall-cmake.sh /tmp/
 
 RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
-        chmod +x /tmp/reinstall-cmake.sh && /tmp/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}; \
+    chmod +x /tmp/reinstall-cmake.sh && /tmp/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}; \
     fi \
     && rm -f /tmp/reinstall-cmake.sh
 
@@ -16,3 +16,12 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 # [Optional] Uncomment this section to install additional packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
+RUN apt update && export DEBIAN_FRONTEND=noninteractive \
+    && apt -y install --no-install-recommends \
+    pipx
+
+# Switch to vscode user to install conan
+# WORKAROUND RATIONALE: pipx ensurepath --global is not working on pipx 1.4.3 version for Ubuntu 24.04.
+USER vscode
+RUN pipx ensurepath
+RUN pipx install conan
