@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "main.cpp"
+#include "sum.hpp"
 
 TEST(SumTest, PositiveNos)
 {
