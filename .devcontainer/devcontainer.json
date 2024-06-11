@@ -12,7 +12,8 @@
 				"ms-vscode.cpptools",
 				"ms-azuretools.vscode-docker",
 				"twxs.cmake",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"matepek.vscode-catch2-test-adapter"
 			]
 		}
 	}
