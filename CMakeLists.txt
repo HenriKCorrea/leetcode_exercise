@@ -1,30 +1,23 @@
 cmake_minimum_required(VERSION 3.15)
-project(LeetcodeExercises)
+project(Leetcode_Exercises LANGUAGE CXX)
 
-# include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
-# include_directories(${CMAKE_SOURCE_DIR}/include)
-
-find_package(GTest REQUIRED)
-
-#add_executable(leetcode_exercises 
-#    "src/main.cpp")
-
-# target_link_libraries(leetcode_exercises gtest::gtest)
-
-add_library(leetcode_exercises_lib 
+set(CPP_FILES
     "src/sum.cpp"
-    "include/sum.hpp" )
+)
+
+set(HPP_FILES
+    "include/sum.hpp"
+)
+
+add_library(${PROJECT_NAME} ${CPP_FILES} ${HPP_FILES})
 
 # Configure the library
-target_include_directories(leetcode_exercises_lib PUBLIC
+target_include_directories(${PROJECT_NAME} PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-add_executable(tests tests/test.cpp)
-
-target_link_libraries(tests
-    leetcode_exercises_lib
-    gtest::gtest)
-    
-# target_link_libraries(tests gtest::gtest)
+# if (BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+# endif ()
