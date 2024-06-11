@@ -31,5 +31,27 @@
 *.out
 *.app
 
+# Ignore the virtual environment
+venv/
+
+# Ignore Python build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore Python distribution artifacts
+dist/
+build/
+*.egg-info/
+*.egg
+*.pyc
+*.pyo
+*.pyd
+.Python
+env.py
+pip-log.txt
+pip-delete-this-directory.txt
+
 # Development environment
 build/

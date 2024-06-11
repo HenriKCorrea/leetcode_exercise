@@ -25,5 +25,6 @@ class Recipe(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        # Generate compile_commands.json, allowing InteliSense detect include paths
+        cmake.configure(variables={"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"})
         cmake.build()
